@@ -7,7 +7,7 @@
     ░ ▒░   ░  ░░▓  ░ ░▒ ▒  ░░ ▒▓ ░▒▓░░ ▒░▒░▒░ ░▒████▒  █████▓▒▒▒▀█▄  ▀█░░
     ░  ░      ░ ▒ ░  ░  ▒     ░▒ ░ ▒░  ░ ▒ ▒░  ░ ░ ░▒░ ▒▓▒ ▒▒░ ▒ ░░▒  ▒ ░
 │▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▏
-│     micro-colorcycle-plugin.lua => Cycle through micro colorschemes         ▏
+│     colorcycle.lua => Cycle through micro colorschemes         ▏
 │                                                                             ▏
 ╞══════════════════════════════════════════════════════════════════════════]]--
 
@@ -25,6 +25,9 @@ local ioutil  = import("io/ioutil")
 local fmt     = import("fmt")
 local time    = import("time")
 
+MakeCommand( "cycleColorscheme", "colorcycle.cycleColorscheme", 0 ) -- Main Command
+MakeCommand( "logGlobals"      , "colorcycle.logGlobals"      , 0 ) -- Utility
+
 --------------------------
 --- FUNC ------------------------------------------
 ----------------------------------------------------------------------------
@@ -32,7 +35,7 @@ local time    = import("time")
  -- TODO: Finish writing code for getting posistion of current colorscheme
        -- so keeping the index isn't necessary
  -- TODO: Add reverse traversal of colorscheme list
-function cyclecolorscheme()
+ function cycleColorscheme()
     local list          = getColorschemes()
     local curr          = getCurrentColorscheme()
     local readout_name  = ""
@@ -133,13 +136,7 @@ end
 
 
 function logger(msg, view)
-    messenger:AddLog(("colorparty <%s>: %s"):
-        format(view.Buf.GetName(view.Buf), msg))
-end
-
-
-function msg(msg, view)
-    messenger:Message(("EditorConfig <%s>: %s"):
+    messenger:AddLog(("cycleColorscheme <%s>: %s"):
         format(view.Buf.GetName(view.Buf), msg))
 end
 
@@ -200,10 +197,4 @@ function logGlobals()
     messenger:AddLog( "Globals: \n" .. t  )
 end
 
--- Main Command
-MakeCommand( "cyclecolorscheme" , "colorparty.partytime"  )
--- Utility
-MakeCommand( "logGlobals"       , "colorparty.logGlobals" )
-
-
-AddRuntimeFile( "colorparty" , "help", "help/colorparty.md" )
+AddRuntimeFile( "colorcycle" , "help", "help/colorcycle.md" )
