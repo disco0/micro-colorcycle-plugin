@@ -1,0 +1,16 @@
+[
+  {
+    "Name": "micro-colorcycle-plugin",
+    "Description": "Colorscheme switcher for micro editor",
+    "Tags": ["color", "utility", "colorschemes"],
+    "Versions": [
+      {
+        "Version": "0.2",
+        "Url": "https://github.com//disco0/micro-colorcycle-plugin/archive/v\\d.\\d.\\d.zip",
+        "Require": {
+          "micro": ">=1.1.3"
+        }
+      }
+    ]
+  }
+]
